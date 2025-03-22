@@ -1,0 +1,51 @@
+
+.navigation-rail {
+    background: var(--schemes-surface, #fef7ff);
+    padding: 44px 0px 56px 0px;
+    display: inline-block;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    justify-content: flex-start;
+    width: 5%;
+    height: 481px;
+    overflow: hidden;
+    margin-right: 24px;
+  }
+  .destinations {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    width: 100%;
+  }
+  .nav-item {
+    padding: 0px 2px 4px 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+    align-items: center;
+  }
+  
+  .nav-item.active {
+    /* background-color: #ddd; Или любой другой стиль */
+    /* color: blue; */
+    background: var(--schemes-secondary-container, #e8def8);
+    border-radius: 30px;
+    gap: 0px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}

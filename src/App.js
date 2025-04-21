@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header'
-import ContactList from './components/ContactList'
+import UserList from './components/UserList'
 import Home from './components/home/Home'
 import NavigationRail from './components/navigationRail/NavigationRail.js'
-import { getContacts, saveContact, searchContacts, udpatePhoto } from './api/ContactService';
+import { getUser, getUsers, saveUser, searchContacts, udpatePhoto } from './api/UserService';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import ContactDetail from './components/ContactDetail';
+import UserDetail from './components/UserDetail';
 import { toastError } from './api/ToastService';
 import { ToastContainer } from 'react-toastify';
-import SearchUsersForm from './components/SearchContactsForms';
 import './index.css'
 
 function App() {
@@ -19,25 +18,26 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [file, setFile] = useState(undefined);
   const [values, setValues] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: '',
-    title: '',
-    status: '',
+    username: '',
+    userlogin: '',
+    userbio: '',
+    usertypeid: '',
+    userpicname: ''
   });
   const [searchParams, setSearchParams] = useState({name: "",
-  email: "",
-  phone: "",
-  address: "",
-  title: "",
-  status: ""});
+    userid: '',
+    username: '',
+    userlogin: '',
+    userbio: '',
+    usertypeid: '',
+    userpicname: ''
+});
 
 
-  const getAllContacts = async (page = 0, size = 10) => {
+  const getAllUsers = async (page = 0, size = 10) => {
     try {
       setCurrentPage(page);
-      const { data } = await getContacts(searchParams,page, size);
+      const { data } = await getUsers(searchParams,page, size);
       setData(data);
       console.log(data);
     } catch (error) {
@@ -58,32 +58,32 @@ function App() {
   const handleNewContact = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await saveContact(values);
+      const { data } = await saveUser(values);
       const formData = new FormData();
       formData.append('file', file, file.name);
-      formData.append('id', data.id);
+      formData.append('userlogin', data.userlogin);
       const { data: photoUrl } = await udpatePhoto(formData);
       toggleModal(false);
       setFile(undefined);
       fileRef.current.value = null;
       setValues({
-        name: '',
-        email: '',
-        phone: '',
-        address: '',
-        title: '',
-        status: '',
+        userid: '',
+        username: '',
+        userlogin: '',
+        userbio: '',
+        usertypeid: '',
+        userpicname: ''
       })
-      getAllContacts();
+      getAllUsers();
     } catch (error) {
       console.log(error);
       toastError(error.message);
     }
   };
 
-  const updateContact = async (contact) => {
+  const updateUser = async (user) => {
     try {
-      const { data } = await saveContact(contact);
+      const { data } = await saveUser(user);
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -102,13 +102,13 @@ function App() {
 
   const handleSearch = async (event) => {
     event.preventDefault(); // Предотвращаем стандартную перезагрузку страницы после отправки формы
-    getAllContacts();
+    getAllUsers();
   };
 
   const toggleModal = show => show ? modalRef.current.showModal() : modalRef.current.close();
 
   useEffect(() => {
-    getAllContacts();
+    getAllUsers();
   }, []);
 
   return (
@@ -117,10 +117,10 @@ function App() {
       <div>
       <form onSubmit={handleSearch}>
         <label htmlFor="name">Имя:</label>
-        <input type="text" name="name" value={searchParams.name} onChange={onFilterChange} />
+        <input type="text" name="username" value={searchParams.username} onChange={onFilterChange} />
 
-        <label htmlFor="email">E-mail:</label>
-        <input type="text" name="email" value={searchParams.email} onChange={onFilterChange}/>
+        <label htmlFor="email">Login:</label>
+        <input type="text" name="userlogin" value={searchParams.userlogin} onChange={onFilterChange}/>
 
 
         <button type="submit">Поиск</button>
@@ -131,10 +131,10 @@ function App() {
           <NavigationRail />
           <div class="content">
             <Routes>
-              <Route path='/' element={<Navigate to={'/contacts'} />} />
+              <Route path='/' element={<Navigate to={'/users'} />} />
               <Route path='/home' element={<Home />} />
-              <Route path="/contacts" element={<ContactList data={data} currentPage={currentPage} getAllContacts={getAllContacts} />} />
-              <Route path="/contacts/:id" element={<ContactDetail updateContact={updateContact} updateImage={updateImage} />} />
+              <Route path="/users" element={<UserList data={data} currentPage={currentPage} getAllUsers={getAllUsers} />} />
+              <Route path="/users/:id" element={<UserDetail updateUser={updateUser} updateImage={updateImage} />} />
             </Routes>
           </div>      
         </div>
@@ -150,33 +150,25 @@ function App() {
         <div className="modal__body">
           <form onSubmit={handleNewContact}>
             <div className="user-details">
+            <div className="input-box">
+                <span className="details">UserLogin</span>
+                <input type="text" value={values.userlogin} onChange={onChange} name='userlogin' required />
+              </div>
               <div className="input-box">
                 <span className="details">Name</span>
-                <input type="text" value={values.name} onChange={onChange} name='name' required />
+                <input type="text" value={values.username} onChange={onChange} name='username' required />
               </div>
               <div className="input-box">
-                <span className="details">Email</span>
-                <input type="text" value={values.email} onChange={onChange} name='email' required />
-              </div>
+                <span className="details">Userbio</span>
+                <input type="text" value={values.userbio} onChange={onChange} name='userbio'/>
+              </div>      
               <div className="input-box">
-                <span className="details">Title</span>
-                <input type="text" value={values.title} onChange={onChange} name='title' required />
-              </div>
-              <div className="input-box">
-                <span className="details">Phone Number</span>
-                <input type="text" value={values.phone} onChange={onChange} name='phone' required />
-              </div>
-              <div className="input-box">
-                <span className="details">Address</span>
-                <input type="text" value={values.address} onChange={onChange} name='address' required />
-              </div>
-              <div className="input-box">
-                <span className="details">Account Status</span>
-                <input type="text" value={values.status} onChange={onChange} name='status' required />
-              </div>
+                <span className="details">UserTypeId</span>
+                <input type="text" value={values.usertypeid} onChange={onChange} name='usertypeid'/>
+              </div>   
               <div className="file-input">
                 <span className="details">Profile Photo</span>
-                <input type="file" onChange={(event) => setFile(event.target.files[0])} ref={fileRef} name='photo' required />
+                <input type="file" onChange={(event) => setFile(event.target.files[0])} ref={fileRef} name='photo'/>
               </div>
             </div>
             <div className="form_footer">

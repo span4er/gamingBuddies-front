@@ -17,7 +17,7 @@ const NavigationRail = () => {
             <Nav.Link href="/home" className={`nav-item ${location.pathname === '/home' ? 'active' : ''}`}>
                 <img alt="Home Icon" src={homeIcon}/> Домой
             </Nav.Link>
-            <Nav.Link href="/contacts" className={`nav-item ${location.pathname === '/contacts' ? 'active' : ''}`}>
+            <Nav.Link href="/users" className={`nav-item ${location.pathname === '/users' ? 'active' : ''}`}>
                 <img alt="Friends Icon" src={friendsIcon}/> Друзья
             </Nav.Link>
             <Nav.Link href="/events" className={`nav-item ${location.pathname === '/events' ? 'active' : ''}`}>

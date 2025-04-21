@@ -7,6 +7,8 @@ import NavigationRail from './components/navigationRail/NavigationRail.js'
 import { getUser, getUsers, saveUser, searchContacts, udpatePhoto } from './api/UserService';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import UserDetail from './components/UserDetail';
+import EventDetail from './components/events/EventDetail'
+import EventList from './components/events/EventList'
 import { toastError } from './api/ToastService';
 import { ToastContainer } from 'react-toastify';
 import './index.css'
@@ -14,8 +16,6 @@ import './index.css'
 function App() {
   const modalRef = useRef();
   const fileRef = useRef();
-  const [data, setData] = useState({});
-  const [currentPage, setCurrentPage] = useState(0);
   const [file, setFile] = useState(undefined);
   const [values, setValues] = useState({
     username: '',
@@ -24,36 +24,15 @@ function App() {
     usertypeid: '',
     userpicname: ''
   });
-  const [searchParams, setSearchParams] = useState({name: "",
-    userid: '',
-    username: '',
-    userlogin: '',
-    userbio: '',
-    usertypeid: '',
-    userpicname: ''
-});
-
-
-  const getAllUsers = async (page = 0, size = 10) => {
-    try {
-      setCurrentPage(page);
-      const { data } = await getUsers(searchParams,page, size);
-      setData(data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-      toastError(error.message);
-    }
-  };
 
   const onChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
-  const onFilterChange = (event) => {
-    setSearchParams({ ...searchParams, [event.target.name]: event.target.value });
-    console.log( event.target.valuerror);
-  };
+  // const onFilterChange = (event) => {
+  //   setSearchParams({ ...searchParams, [event.target.name]: event.target.value });
+  //   console.log( event.target.valuerror);
+  // };
 
   const handleNewContact = async (event) => {
     event.preventDefault();
@@ -74,7 +53,7 @@ function App() {
         usertypeid: '',
         userpicname: ''
       })
-      getAllUsers();
+      // getAllUsers();
     } catch (error) {
       console.log(error);
       toastError(error.message);
@@ -100,20 +79,20 @@ function App() {
     }
   };
 
-  const handleSearch = async (event) => {
-    event.preventDefault(); // Предотвращаем стандартную перезагрузку страницы после отправки формы
-    getAllUsers();
-  };
+  // const handleSearch = async (event) => {
+  //   event.preventDefault(); // Предотвращаем стандартную перезагрузку страницы после отправки формы
+  //   getAllUsers();
+  // };
 
   const toggleModal = show => show ? modalRef.current.showModal() : modalRef.current.close();
 
-  useEffect(() => {
-    getAllUsers();
-  }, []);
+  // useEffect(() => {
+  //   getAllUsers();
+  // }, []);
 
   return (
     <>
-      <Header toggleModal={toggleModal} nbOfContacts={data.totalElements} />
+      {/* <Header toggleModal={toggleModal} nbOfContacts={data.totalElements} />
       <div>
       <form onSubmit={handleSearch}>
         <label htmlFor="name">Имя:</label>
@@ -125,7 +104,7 @@ function App() {
 
         <button type="submit">Поиск</button>
       </form>
-      </div>
+      </div> */}
       <main className='main'>
         <div class="home">
           <NavigationRail />
@@ -133,8 +112,10 @@ function App() {
             <Routes>
               <Route path='/' element={<Navigate to={'/users'} />} />
               <Route path='/home' element={<Home />} />
-              <Route path="/users" element={<UserList data={data} currentPage={currentPage} getAllUsers={getAllUsers} />} />
+              <Route path="/users" element={<UserList />} />
               <Route path="/users/:id" element={<UserDetail updateUser={updateUser} updateImage={updateImage} />} />
+              <Route path="/events" element={<EventList />}/>
+              <Route path='/events/:id' element={<EventDetail />} />
             </Routes>
           </div>      
         </div>

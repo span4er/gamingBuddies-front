@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = 'http://localhost:8080/users';
+const API_URL = 'http://192.168.0.181:8080/users';
 
 export async function saveUser(user) {
     return await axios.post(`${API_URL}/new`, user);

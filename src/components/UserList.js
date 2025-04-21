@@ -1,9 +1,49 @@
 import React from 'react';
 import User from "./User"
+import { useEffect, useRef, useState } from 'react';
+import TopAppBar from './topAppBar/TopAppBar';
+import { getUser, getUsers, saveUser, searchContacts, udpatePhoto } from '../api/UserService';
+import { toastError, toastSuccess } from '../api/ToastService';
 
-const UserList = ({ data, currentPage, getAllUsers }) => {
+function UserList(){
+
+    const [data, setData] = useState({});
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const [searchParams, setSearchParams] = useState({name: "",
+        userid: '',
+        username: '',
+        userlogin: '',
+        userbio: '',
+        usertypeid: '',
+        userpicname: ''
+    });
+
+    const appBarConfig = {
+        showBackButton: true,
+        backLabel: "Назад",
+        title: "Друзья"
+    };
+
+    const getAllUsers = async (page = 0, size = 10) => {
+        try {
+          setCurrentPage(page);
+          const { data } = await getUsers(searchParams,page, size);
+          setData(data);
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+          toastError(error.message);
+        }
+      };
+
+    useEffect(() => {
+        getAllUsers();
+    }, []); 
+
     return (
-        <main className='main'>
+        <div>
+            <TopAppBar config={appBarConfig} />
             {data?.content?.length === 0 && <div>No Contacts. Please add a new contact</div>}
 
             <ul className='contact__list'>
@@ -22,7 +62,7 @@ const UserList = ({ data, currentPage, getAllUsers }) => {
             </div>            
             }
 
-        </main>
+        </div>
     )
 }
 

@@ -5,11 +5,13 @@ import logo from '../../resources/home//top-app-bar0.png'
 import account from '../../resources/home/account-circle0.svg'
 import notifications from '../../resources/home/notifications0.svg'
 import settings from '../../resources/home/settings0.svg'
+import rightArrow from '../../resources/home/rightArrow.svg'
+import '../../index.css';
 
 const Home = () => {
     return (
-
-          <div class="top-app-bar" style={{
+          <div>
+          <div class="top-app-bar-home" style={{
             backgroundImage: `url(${logo})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
@@ -41,7 +43,34 @@ const Home = () => {
             </div>
             <div class="headline">
               <div class="headline2">Span4er</div>
+            </div>           
+          </div>
+          <div class="section-01">
+          <div class="title-header">
+            <div class="title">Актуально сейчас</div>
+            <div class="icon-button">
+              <div class="container">
+                <div class="state-layer">
+                  <img class="icon" src={rightArrow} />
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="carousel">
+            <div class="item-02">
+              <div
+                class="avatar"
+              >
+                <div
+                  class="contact__image"
+                >
+                  <img class="fortnite-1" src={logo} />
+                </div>
+              </div>
+              <div class="label">Fortnite</div>
+            </div>
+          </div>
+          </div>
           </div>
     )
 };

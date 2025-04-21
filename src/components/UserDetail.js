@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getUser } from '../api/UserService';
 import { toastError, toastSuccess } from '../api/ToastService';
+import TopAppBar from './topAppBar/TopAppBar';
 
 const UserDetail = ({ updateUser, updateImage }) => {
     const inputRef = useRef();
@@ -61,9 +62,15 @@ const UserDetail = ({ updateUser, updateImage }) => {
         fetchUser(id);
     }, []);
 
+    const appBarConfig = {
+        showBackButton: true,
+        backLabel: "Назад"
+    };
+
     return (
         <>
-            <Link to={'/users'} className='link'><i className='bi bi-arrow-left'></i> Back to list</Link>
+            {/* <Link to={'/users'} className='link'><i className='bi bi-arrow-left'></i> Back to list</Link> */}
+            <TopAppBar config={appBarConfig} />
             <div className='profile'>
                 <div className='profile__details'>
                     <img src={user.userpicname} alt={`Profile photo of ${user.username}`} />

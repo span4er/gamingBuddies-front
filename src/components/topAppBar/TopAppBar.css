@@ -22,6 +22,7 @@
     width: 48px;
     height: 48px;
     position: relative;
+    cursor: pointer;
   }
   
   .back-line {
@@ -39,6 +40,7 @@
     line-height: var(--m3-title-large-line-height, 28px);
     font-weight: var(--m3-title-large-font-weight, 400);
     position: relative;
+    cursor: pointer;
   }
   
   .top-app-bar-headline {

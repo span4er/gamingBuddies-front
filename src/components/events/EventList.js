@@ -38,7 +38,7 @@ const getAllEvents = async (page = 0, size = 5) => {
   }, []);
 
     return (
-        <div>
+        <div style={{ justifyItems: 'center' }}>
             <TopAppBar config={appBarConfig} />
             {data?.content?.length === 0 && <div>No Contacts. Please add a new contact</div>}
 

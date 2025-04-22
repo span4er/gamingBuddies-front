@@ -8,11 +8,12 @@ import './EventDetail.css'
 import TopAppBar from '../topAppBar/TopAppBar';
 import dotaPng from '../../resources/events/dota.png'
 import {formatCreateDateFromTimestamp, formatDateShortView} from '../../utils/DateUtils.js'
+import UserInEvent from './userInEvent/UserInEvent';
 
 const EventDetail = ({ }) => {
     const [event, setEvent] = useState({
         gamesessionid: '',
-        gameid: '',
+        game: '',
         platformid: '',
         createuserid: '',
         createdttm: '',
@@ -51,7 +52,7 @@ const EventDetail = ({ }) => {
         <TopAppBar config={appBarConfig} />
         <div class="main-info-event">
             <div class="first-event-group">
-                <img class="game-icon" src={dotaPng} />
+                <img class="game-icon" src={event.game.mainpicname} />
                 <div class="event-dttm-block">
                     <div class="start-dttm">{ formatDateShortView(event.startdttm) }</div>
                     <div class="end-dttm">{ formatDateShortView(event.enddttm) }</div>
@@ -72,26 +73,20 @@ const EventDetail = ({ }) => {
                 </div>
                 {/* <img class="image2" src="image1.png" /> */}
             </div>
-            <div class="span-4-er">span4er</div>
         </div>
+        <div class="platform-item">Платформа:
+            <div class="platform-chip">
+                PC
+            </div>
+        </div>        
         <div class="simple-card-grid">
             <div class="title-header">
-            <div class="title">Участники 3/5</div>
-            <div class="icon-button">
-                <div class="container2">
-                <div class="state-layer2">
-                    <div class="icon6"></div>
-                </div>
-                </div>
-            </div>
+            <div class="title">Участники {event?.usersInSession?.length}/{event.capacitynum}</div>
             </div>
         </div>
-        <div class="div3">Платформа:</div>
-        <div class="chip-03">
-            <div class="state-layer4">
-            <div class="label-text2">PC</div>
-            </div>
-        </div>
+        <ul className='event-list'>
+            {event?.usersInSession?.length > 0 && event.usersInSession.map(userInEvent =>  <UserInEvent userInEvent={userInEvent} key={userInEvent.object_id} />)}
+        </ul>
     </div>
     )
 }

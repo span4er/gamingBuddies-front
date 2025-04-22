@@ -1,0 +1,49 @@
+
+.user-event-item {
+	width: 100%;
+	/* background-color: #ecf1f1; */
+	padding: .88rem;
+	border-radius: var(--radius-5);
+	cursor: pointer;
+	min-height: max-content;
+    display: flex;
+    flex-direction: row;
+    margin-left: 3%;
+	/* max-width: 280px; */
+}
+
+.user-avatar-image{
+    width: 60px;
+	/* border: 3px solid var(--selective-blue); */
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	object-position: center;
+    border-radius: var(--radius-circle);
+}
+
+.user-event-info{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-self: center;
+    position: relative;
+    margin-left: 1%;
+    font-family: var(--m3-label-large-font-family, "Roboto-Medium", sans-serif);
+    font-size: var(--m3-label-large-font-size, 17px);
+    line-height: var(--m3-label-large-line-height, 20px);
+    letter-spacing: var(--m3-label-large-letter-spacing, 0.1px);
+    font-weight: var(--m3-label-large-font-weight, 500);
+}
+
+.user-event-name{
+    color: var(--schemes-on-surface, #1d1b20);
+    text-align: left;
+    font-family: var(--m3-label-large-font-family, "Roboto-Medium", sans-serif);
+    font-size: var(--m3-label-large-font-size, 18px);
+    line-height: var(--m3-label-large-line-height, 20px);
+    letter-spacing: var(--m3-label-large-letter-spacing, 0.1px);
+    font-weight: var(--m3-label-large-font-weight, 500);
+    position: relative;
+    align-self: stretch;
+}
+

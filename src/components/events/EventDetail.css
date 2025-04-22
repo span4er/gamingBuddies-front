@@ -94,6 +94,19 @@
     font-weight: var(--m3-label-small-font-weight, 500);
   }
 
+  .remain-time{
+    background: #65558f;
+    text-align: center;
+    align-self: center;
+    color: #ffffff;
+    width: 70%;
+    font-family: var(--m3-label-small-font-family, "Roboto-Medium", sans-serif);
+    font-size: var(--m3-label-small-font-size, 80%);
+    line-height: var(--m3-label-small-line-height, 2);
+    letter-spacing: var(--m3-label-small-letter-spacing, 0.5px);
+    font-weight: var(--m3-label-small-font-weight, 500);
+  }
+
   .game-icon{
   border-radius: 28px;
   flex-shrink: 0;
@@ -159,5 +172,58 @@
     width: 70%;
   }
 
-  
- 
+  .platform-item{
+    margin: 0 0 0 1%;
+    color: #1d1b20;
+    text-align: center;
+    font-family: var(--m3-label-large-font-family, "Roboto-Medium", sans-serif);
+    font-size: var(--m3-label-large-font-size, 16px);
+    line-height: var(--m3-label-large-line-height, 20px);
+    letter-spacing: var(--m3-label-large-letter-spacing, 0.1px);
+    font-weight: var(--m3-label-large-font-weight, 500);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 40px;
+    width: 40px;
+  }
+
+  .platform-chip{
+    /* margin: 0 0 0 -20px; */
+    background: var(--schemes-secondary-container, #e8def8);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .title-header {
+    padding: 0px 24px 0px 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    height: 48px;
+    position: relative;
+  }
+  .title {
+    color: var(--schemes-on-surface, #1d1b20);
+    text-align: left;
+    font-family: var(--m3-title-large-font-family, "Roboto-Regular", sans-serif);
+    font-size: var(--m3-title-large-font-size, 22px);
+    line-height: var(--m3-title-large-line-height, 28px);
+    font-weight: var(--m3-title-large-font-weight, 400);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }

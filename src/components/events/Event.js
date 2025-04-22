@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Event.css'
 import rightArrow from '../../resources/events/rightArrow.svg'
+import {formatDateShortView} from '../../utils/DateUtils.js'
 
 const stripHtmlTags = text => text.replace(/<\/?[^>]+(>|$)/g, '');
 
@@ -18,54 +19,47 @@ const PrepareEventDescription = sessiondescription => {
 
 const Event = ({ event }) => {
   return (
-    <Link to={`/events/${event.gamesessionid}`} className="event-item">
+    <Link to={`/events/${event.gameSessionId}`} className="event-item">
         <div class="upper-event-group">
-            <div class="content2">
-              <div class="event-name">{event.name}</div>         
-            </div>
-            <div class="creator-avatar">{event.createuserid}</div>
-            <div class="trailing-element">
-              <img class="arrow-forward" src={rightArrow}/>
+            <img class="event-icon" src={event.gamePicName} />
+            <div class="upper-right-event-group">
+              <div class="event-right-group-headline">
+                <div class="event-name">{event.sessionName}</div>
+                <div class="event-creator-group">
+                  <div class="creator-login">{event.createUserLogin}</div>
+                  {/* <div class="trailing-element"> */}
+                    <img class="creator-icon" src={event.createUserPicName} />
+                  {/* </div> */}
+                  <div class="trailing-element">
+                    <img class="arrow-forward" src={rightArrow}/>
+                  </div>           
+                </div>
+              </div>
+              <div class="event-text">
+                    {PrepareEventDescription(event.sessionDescription)}
+              </div>       
             </div>
         </div>
-        <div class="event-text">
-                {PrepareEventDescription(event.sessiondescription)}
-        </div>
-          {/* <div class="div2">
-            <div class="avatar-group">
-              <div class="avatar">
-                <img class="shape" src="shape0.png" />
-              </div>
-              <div class="avatar">
-                <img class="shape" src="shape1.png" />
-              </div>
-              <div class="avatar">
-                <img class="shape" src="shape2.png" />
-              </div>
-              <div class="overflow">
-                <div class="initials">+1</div>
-              </div>
+        {/* <div class="middle-event-group">
+            <img class="event-icon" src={event.mainPicName} />
+            
+        </div> */}
+          <div class="down-event-group">
+            <div class="event-down-rectangle">
+              Язык: {event.languageShort}
             </div>
-          </div> */}
-          <div class="div3">
-            <div class="rectangle-1"></div>
-            <div class="supporting-text2">Основной язык: RUS</div>
-          </div>
-          <div class="div4">
-            <div class="rectangle-12"></div>
-            <div class="supporting-text3">Соревновательный</div>
-          </div>
-          <div class="div4">
-            <div class="rectangle-13"></div>
-            <div class="supporting-text4">Активное</div>
-          </div>
-          <div class="div4">
-            <div class="rectangle-14"></div>
-            <div class="supporting-text5">15.12.2024 05:00</div>
-          </div>
-          <div class="div5">
-            <div class="rectangle-15"></div>
-            <div class="_4-5">4/5</div>
+            <div class="event-down-rectangle">
+              {event.categoryName}
+            </div>
+            <div class="event-down-rectangle">
+              {event.sessionStatusName}
+            </div>
+            <div class="event-down-rectangle">
+              {formatDateShortView(event.startDttm)}
+            </div>
+            <div class="event-capacity">
+              4/{event.capacityNum}
+            </div>
           </div>
         </Link>
   )

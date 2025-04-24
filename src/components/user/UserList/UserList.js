@@ -1,9 +1,9 @@
 import React from 'react';
-import User from "./User"
+import User from "../User"
 import { useEffect, useRef, useState } from 'react';
-import TopAppBar from './topAppBar/TopAppBar';
-import { getUser, getUsers, saveUser, searchContacts, udpatePhoto } from '../api/UserService';
-import { toastError, toastSuccess } from '../api/ToastService';
+import TopAppBar from '../../topAppBar/TopAppBar';
+import { getUser, getUsers, saveUser, searchContacts, udpatePhoto } from '../../../api/UserService';
+import { toastError, toastSuccess } from '../../../api/ToastService';
 
 function UserList(){
 

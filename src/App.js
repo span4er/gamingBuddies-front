@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header'
-import UserList from './components/UserList'
+import UserList from './components/user/UserList/UserList'
 import Home from './components/home/Home'
 import NavigationRail from './components/navigationRail/NavigationRail.js'
 import { getUser, getUsers, saveUser, searchContacts, udpatePhoto } from './api/UserService';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import UserDetail from './components/UserDetail';
-import EventDetail from './components/events/EventDetail'
-import EventList from './components/events/EventList'
+import UserDetail from './components/user/UserDetail/UserDetail';
+import EventDetail from './components/events/EventDetail/EventDetail'
+import EventList from './components/events/EventList/EventList'
+import GameCard from './components/gameLibrary/GameCard/GameCard'
+import GameList from './components/gameLibrary/GameList/GameList'
 import { toastError } from './api/ToastService';
 import { ToastContainer } from 'react-toastify';
 import './index.css'
@@ -116,6 +118,8 @@ function App() {
               <Route path="/users/:id" element={<UserDetail updateUser={updateUser} updateImage={updateImage} />} />
               <Route path="/events" element={<EventList />}/>
               <Route path='/events/:id' element={<EventDetail />} />
+              <Route path="/library" element={<GameList />}/>
+              <Route path='/library/game/:id' element={<GameCard />} />
             </Routes>
           </div>      
         </div>

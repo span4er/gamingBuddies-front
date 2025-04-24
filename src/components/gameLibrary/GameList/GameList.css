@@ -1,0 +1,21 @@
+/* .game-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 1rem;
+} */
+
+.game-list {
+	padding: 20px 24px 32px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  row-gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+

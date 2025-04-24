@@ -20,10 +20,10 @@ const NavigationRail = () => {
             <Nav.Link href="/users" className={`nav-item ${location.pathname === '/users' ? 'active' : ''}`}>
                 <img alt="Friends Icon" src={friendsIcon}/> Друзья
             </Nav.Link>
-            <Nav.Link href="/events" className={`nav-item ${location.pathname === '/events' ? 'active' : ''}`}>
+            <Nav.Link href="/events" className={`nav-item ${location.pathname.includes('/events') ? 'active' : ''}`}>
                 <img alt="Events Icon" src={eventsIcon}/> События
             </Nav.Link>
-            <Nav.Link href="/library" className={`nav-item ${location.pathname === '/library' ? 'active' : ''}`}>
+            <Nav.Link href="/library" className={`nav-item ${location.pathname.includes('/library') ? 'active' : ''}`}>
                 <img alt="Library Icon" src={libraryIcon}/> Библиотека
             </Nav.Link>
         </Container>

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Event.css'
-import rightArrow from '../../resources/events/rightArrow.svg'
-import {formatDateShortView} from '../../utils/DateUtils.js'
+import rightArrow from '../../../resources/events/rightArrow.svg'
+import {formatDateShortView} from '../../../utils/DateUtils.js'
 
 const stripHtmlTags = text => text.replace(/<\/?[^>]+(>|$)/g, '');
 

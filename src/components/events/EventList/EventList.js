@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import Event from "./Event"
-import { getEvents } from '../../api/EventService';
-import { toastError, toastSuccess } from '../../api/ToastService';
+import Event from "../Event/Event"
+import { getEvents } from '../../../api/EventService';
+import { toastError, toastSuccess } from '../../../api/ToastService';
 import './EventList.css'
-import TopAppBar from '../topAppBar/TopAppBar';
+import TopAppBar from '../../topAppBar/TopAppBar';
 
 function EventList(){
 const [data, setData] = useState({});

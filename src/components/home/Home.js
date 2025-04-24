@@ -1,5 +1,5 @@
 import React from 'react';
-import User from "../User"
+import User from "../user/User"
 import './home.css'
 import logo from '../../resources/home//top-app-bar0.png'
 import account from '../../resources/home/account-circle0.svg'

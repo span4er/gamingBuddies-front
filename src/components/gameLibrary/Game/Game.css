@@ -1,0 +1,87 @@
+.card-grid {
+    padding: 0px 24px 32px 24px;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    row-gap: 16px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+  }
+.card-01 {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: 1;
+    height: 160px;
+    min-width: 120px;
+    max-width: 220px;
+    position: relative;
+  }
+  .image {
+    border-radius: 16px;
+    align-self: stretch;
+    flex-shrink: 0;
+    height: 120px;
+    position: relative;
+    object-fit: fill;
+  }
+  .content2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: stretch;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+.game-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	column-gap: 12px;
+}
+
+.game-item {
+	width: 100%;
+	background-color: #ecf1f1;
+	padding: .88rem;
+	border-radius: var(--radius-5);
+	cursor: pointer;
+	min-height: max-content;
+	/* max-width: 280px; */
+}
+
+.game-image {
+	width: 50px;
+}
+
+.game-image img {
+	width: 100%;
+	border: 3px solid var(--selective-blue);
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	object-position: center;
+	border-radius: var(--radius-circle);
+}
+
+.game-name {
+	color: #3c3f3f;
+	font-size: 1.25rem;
+	text-align: center;
+	font-weight: 600;
+}
+
+.game-body {
+	margin-top: 1rem;
+}

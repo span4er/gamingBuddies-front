@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getUser } from '../api/UserService';
-import { toastError, toastSuccess } from '../api/ToastService';
-import TopAppBar from './topAppBar/TopAppBar';
+import { getUser } from '../../../api/UserService';
+import { toastError, toastSuccess } from '../../../api/ToastService';
+import TopAppBar from '../../topAppBar/TopAppBar';
 
 const UserDetail = ({ updateUser, updateImage }) => {
     const inputRef = useRef();

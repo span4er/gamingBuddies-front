@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
-import { toastError, toastSuccess } from '../../api/ToastService';
-import { getEvent } from '../../api/EventService';
-import leftArrow from '../../resources/events/leftArrow.svg'
+import { toastError, toastSuccess } from '../../../api/ToastService';
+import { getEvent } from '../../../api/EventService';
 import './EventDetail.css'
-import TopAppBar from '../topAppBar/TopAppBar';
-import dotaPng from '../../resources/events/dota.png'
-import {formatCreateDateFromTimestamp, formatDateShortView} from '../../utils/DateUtils.js'
-import UserInEvent from './userInEvent/UserInEvent';
+import TopAppBar from '../../topAppBar/TopAppBar';
+import {formatCreateDateFromTimestamp, formatDateShortView} from '../../../utils/DateUtils.js'
+import UserInEvent from '../userInEvent/UserInEvent';
 
 const EventDetail = ({ }) => {
     const [event, setEvent] = useState({

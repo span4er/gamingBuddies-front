@@ -9,11 +9,16 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import UserDetail from './components/user/UserDetail/UserDetail';
 import EventDetail from './components/events/EventDetail/EventDetail'
 import EventList from './components/events/EventList/EventList'
+import ReportList from './components/reports/ReportList/ReportList'
 import GameCard from './components/gameLibrary/GameCard/GameCard'
 import GameList from './components/gameLibrary/GameList/GameList'
+import AuthForm from './components/Auth/AuthForm.js'
 import { toastError } from './api/ToastService';
 import { ToastContainer } from 'react-toastify';
 import './index.css'
+import axios from 'axios';
+import ReportDetail from './components/reports/ReportDetail/ReportDetail';
+
 
 function App() {
   const modalRef = useRef();
@@ -27,14 +32,21 @@ function App() {
     userpicname: ''
   });
 
+  // // Настройка дефолтного перехватчика для всех запросов
+  axios.interceptors.request.use(
+      config => {
+        const token = localStorage.getItem('jwtToken');
+        if (token) {
+          config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+      },
+      error => Promise.reject(error)
+    );
+
   const onChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
-
-  // const onFilterChange = (event) => {
-  //   setSearchParams({ ...searchParams, [event.target.name]: event.target.value });
-  //   console.log( event.target.valuerror);
-  // };
 
   const handleNewContact = async (event) => {
     event.preventDefault();
@@ -55,7 +67,6 @@ function App() {
         usertypeid: '',
         userpicname: ''
       })
-      // getAllUsers();
     } catch (error) {
       console.log(error);
       toastError(error.message);
@@ -81,19 +92,11 @@ function App() {
     }
   };
 
-  // const handleSearch = async (event) => {
-  //   event.preventDefault(); // Предотвращаем стандартную перезагрузку страницы после отправки формы
-  //   getAllUsers();
-  // };
-
   const toggleModal = show => show ? modalRef.current.showModal() : modalRef.current.close();
-
-  // useEffect(() => {
-  //   getAllUsers();
-  // }, []);
 
   return (
     <>
+    {/* <Header toggleModal={toggleModal} nbOfContacts={12} /> */}
       {/* <Header toggleModal={toggleModal} nbOfContacts={data.totalElements} />
       <div>
       <form onSubmit={handleSearch}>
@@ -112,6 +115,7 @@ function App() {
           <NavigationRail />
           <div class="content">
             <Routes>
+              <Route path="/auth" element= {<AuthForm />} />
               <Route path='/' element={<Navigate to={'/users'} />} />
               <Route path='/home' element={<Home />} />
               <Route path="/users" element={<UserList />} />
@@ -120,6 +124,8 @@ function App() {
               <Route path='/events/:id' element={<EventDetail />} />
               <Route path="/library" element={<GameList />}/>
               <Route path='/library/game/:id' element={<GameCard />} />
+              <Route path="/reports" element={<ReportList />} />
+              <Route path="/reports/:id" element={<ReportDetail/>} />
             </Routes>
           </div>      
         </div>

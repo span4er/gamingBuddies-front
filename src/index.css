@@ -243,6 +243,7 @@ i {
 .main {
 	margin-left: 0px;
 	margin-right: 0px;
+	background: var(--schemes-surface, #fef7ff);
 }
 
 .contact__list {

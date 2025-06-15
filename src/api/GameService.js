@@ -7,5 +7,5 @@ export async function getGame(id) {
 }
 
 export async function searchGames(searchParams,page = 0, size = 10) {
-    return await axios.post(`${API_URL}?&page=${page}&size=${size}`,searchParams);
+    return await axios.get(`${API_URL}?&page=${page}&size=${size}`,searchParams);
 }

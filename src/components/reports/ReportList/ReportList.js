@@ -1,31 +1,31 @@
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import Event from "../Event/Event"
-import { getEvents } from '../../../api/EventService';
+import Report from "../Report/Report"
+import { getReports, searchReports } from '../../../api/ReportService';
 import { toastError, toastSuccess } from '../../../api/ToastService';
-import './EventList.css'
+import './ReportList.css'
 import TopAppBar from '../../topAppBar/TopAppBar';
 import settings from '../../../resources/Reports/settings.svg'
 
-function EventList(){
+function ReportList(){
 const [data, setData] = useState({});
 const [currentPage, setCurrentPage] = useState(0);
 
-const [gameSessionSearchParams, setGameSessionSearchParams] = useState({
+const [reportsSearchParams, setreportsSearchParams] = useState({
     gameid: '',
     createuserid: ''
 });
 
 const appBarConfig = {
-    showBackButton: true,
+    showBackButton: false,
     backLabel: "Назад",
-    title: "Игровые события"
+    title: "Жалобы"
 };
 
-const getAllEvents = async (page = 0, size = 5) => {
+const getAllReports = async (page = 0, size = 5) => {
     try {
       setCurrentPage(page);
-      const { data } = await getEvents(gameSessionSearchParams,page, size);
+      const { data } = await searchReports(reportsSearchParams,page, size);
       setData(data);
       console.log(data);
     } catch (error) {
@@ -35,7 +35,7 @@ const getAllEvents = async (page = 0, size = 5) => {
   };
 
   useEffect(() => {
-    getAllEvents();
+    getAllReports();
   }, []);
 
     return (
@@ -53,21 +53,21 @@ const getAllEvents = async (page = 0, size = 5) => {
                 </div>
               </div>
             </div>
-            {data?.content?.length === 0 && <div>Нет игровых событий. Пожалуйста, измените фильтры поиска</div>}
+            {data?.content?.length === 0 && <div>Нет жалоб. Пожалуйста, измените фильтры поиска</div>}
 
             <ul className='event-list'>
-                {data?.content?.length > 0 && data.content.map(event => <Event event={event} key={event.gamesessionid} />)}
+                {data?.content?.length > 0 && data.content.map(report => <Report report={report} key={report.reportId} />)}
             </ul>
 
             {data?.content?.length > 0 && data?.totalPages &&
             <div className='pagination'>
-                <a onClick={() => getAllEvents(currentPage - 1)} className={0 === currentPage ? 'disabled' : ''}>&laquo;</a>
+                <a onClick={() => getAllReports(currentPage - 1)} className={0 === currentPage ? 'disabled' : ''}>&laquo;</a>
 
                 { data && [...Array(data.totalPages).keys()].map((page, index) => 
-                    <a onClick={() => getAllEvents(page)} className={currentPage === page ? 'active' : ''} key={page}>{page + 1}</a>)}
+                    <a onClick={() => getAllReports(page)} className={currentPage === page ? 'active' : ''} key={page}>{page + 1}</a>)}
 
 
-                <a onClick={() => getAllEvents(currentPage + 1)} className={data.totalPages === currentPage + 1 ? 'disabled' : ''}>&raquo;</a>
+                <a onClick={() => getAllReports(currentPage + 1)} className={data.totalPages === currentPage + 1 ? 'disabled' : ''}>&raquo;</a>
             </div>            
             }
 
@@ -75,4 +75,4 @@ const getAllEvents = async (page = 0, size = 5) => {
     )
 
 }
-export default EventList
+export default ReportList

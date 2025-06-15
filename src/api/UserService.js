@@ -3,11 +3,11 @@ import axios from "axios";
 const API_URL = 'http://192.168.0.181:8080/users';
 
 export async function saveUser(user) {
-    return await axios.post(`${API_URL}/new`, user);
+    return await axios.post(`${API_URL}`, user);
 }
 
 export async function getUsers(searchParams,page = 0, size = 10) {
-    return await axios.post(`${API_URL}?&page=${page}&size=${size}`,searchParams);
+    return await axios.get(`${API_URL}?&page=${page}&size=${size}`);
 }
 
 export async function getUser(id) {

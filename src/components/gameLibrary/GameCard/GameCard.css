@@ -28,7 +28,7 @@
       overflow-y: auto;
     }
     .main-info-event {
-      margin: 0 0 0 -20px;
+      margin: 0 0 0 1%;
       padding: 8px 24px 8px 24px;
       display: flex;
       flex-direction: row;

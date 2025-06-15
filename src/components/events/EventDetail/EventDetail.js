@@ -29,7 +29,6 @@ const EventDetail = ({ }) => {
             const { data } = await getEvent(id);
             setEvent(data);
             console.log(data);
-            //toastSuccess('Contact retrieved');
         } catch (error) {
             console.log(error);
             toastError(error.message);
@@ -69,7 +68,6 @@ const EventDetail = ({ }) => {
                     <div class="label-text">Принять участие</div>
                     </div>
                 </div>
-                {/* <img class="image2" src="image1.png" /> */}
             </div>
         </div>
         <div class="platform-item">Платформа:
